@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Tabs Dinâmicas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        /* Estilo das abas */
+        .tabs {
+            display: flex;
+            cursor: pointer;
+            background-color: #333;
+            overflow: hidden;
+        }
+        .tabs button {
+            background-color: inherit;
+            border: none;
+            outline: none;
+            padding: 14px 20px;
+            color: white;
+            font-size: 18px;
+            transition: 0.3s;
+            flex-grow: 1;
+            text-align: center;
+        }
+        .tabs button:hover {
+            background-color: #575757;
+        }
+        .tabs button.active {
+            background-color: #575757;
+        }
+
+        /* Estilo do conteúdo das abas */
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            margin-top: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sistema de Abas -->
+    <div class="tabs">
+        <button class="tab-link active" data-tab="tab1">Aba 1</button>
+        <button class="tab-link" data-tab="tab2">Aba 2</button>
+        <button class="tab-link" data-tab="tab3">Aba 3</button>
+    </div>
+
+    <!-- Conteúdo das Abas -->
+    <div id="tab1" class="tab-content active">
+        <h2>Conteúdo da Aba 1</h2>
+        <p>Esta é a descrição do conteúdo da Aba 1.</p>
+    </div>
+
+    <div id="tab2" class="tab-content">
+        <h2>Conteúdo da Aba 2</h2>
+        <p>Esta é a descrição do conteúdo da Aba 2.</p>
+    </div>
+
+    <div id="tab3" class="tab-content">
+        <h2>Conteúdo da Aba 3</h2>
+        <p>Esta é a descrição do conteúdo da Aba 3.</p>
+    </div>
+
+    <script>
+        // Seleciona todas as abas e o conteúdo
+        const tabLinks = document.querySelectorAll('.tab-link');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                const targetTab = link.getAttribute('data-tab');
+
+                // Remove a classe 'active' de todas as abas e conteúdo
+                tabLinks.forEach(item => item.classList.remove('active'));
+                tabContents.forEach(item => item.classList.remove('active'));
+
+                // Adiciona a classe 'active' à aba clicada e ao conteúdo correspondente
+                link.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+            });
+        });
+    </script>
+
+</body>
+</html>

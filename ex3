@@ -1,0 +1,156 @@
+-<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider de Imagens</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .slider {
+            position: relative;
+            width: 80%;
+            max-width: 700px;
+            overflow: hidden;
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slides img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        .navigation {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .nav-btn {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .nav-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .dots {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .dot {
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .active {
+            background-color: #717171;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slider" id="slider">
+        <div class="slides" id="slides">
+            <img src="https://via.placeholder.com/700x400/ff7f7f/333333?text=Slide+1" alt="Slide 1">
+            <img src="https://via.placeholder.com/700x400/7f7fff/333333?text=Slide+2" alt="Slide 2">
+            <img src="https://via.placeholder.com/700x400/7fff7f/333333?text=Slide+3" alt="Slide 3">
+            <img src="https://via.placeholder.com/700x400/ffff7f/333333?text=Slide+4" alt="Slide 4">
+        </div>
+        <div class="navigation">
+            <button class="nav-btn" id="prevBtn">❮</button>
+            <button class="nav-btn" id="nextBtn">❯</button>
+        </div>
+    </div>
+
+    <div class="dots" id="dots">
+        <span class="dot" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+        <span class="dot" data-index="3"></span>
+    </div>
+
+    <script>
+        const slides = document.getElementById('slides');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dots = document.querySelectorAll('.dot');
+
+        let currentIndex = 0;
+        const totalSlides = slides.children.length;
+
+        const updateSlider = () => {
+            
+            slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+            
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentIndex].classList.add('active');
+        };
+
+        
+        const showPrevSlide = () => {
+            currentIndex = (currentIndex === 0) ? totalSlides - 1 : currentIndex - 1;
+            updateSlider();
+        };
+
+        
+        const showNextSlide = () => {
+            currentIndex = (currentIndex === totalSlides - 1) ? 0 : currentIndex + 1;
+            updateSlider();
+        };
+
+        
+        const autoSlide = () => {
+            showNextSlide();
+        };
+
+        let autoSlideInterval = setInterval(autoSlide, 3000); // Troca de imagem a cada 3 segundos
+
+        
+        prevBtn.addEventListener('click', () => {
+            showPrevSlide();
+            clearInterval(autoSlideInterval); // Para a troca automática ao clicar
+            autoSlideInterval = setInterval(autoSlide, 3000); // Reinicia o intervalo
+        });
+
+        nextBtn.addEventListener('click', () => {
+            showNextSlide();
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(autoSlide, 3000);
+        });
+
+        
+        dots.forEach(dot => {
+            dot.addEventListener('click', (event) => {
+                currentIndex = parseInt(event.target.getAttribute('data-index'));
+                updateSlider();
+                clearInterval(autoSlideInterval);
+                autoSlideInterval = setInterval(autoSlide, 3000);
+            });
+        });
+
+        
+        updateSlider();
+    </script>
+
+</body>
+</html>

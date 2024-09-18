@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Suave com Links Internos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth; /* Scroll suave */
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+            z-index: 1000;
+        }
+        nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            height: 100vh;
+            padding: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+        #section1 {
+            background-color: #ff7f7f;
+        }
+        #section2 {
+            background-color: #7f7fff;
+        }
+        #section3 {
+            background-color: #7fff7f;
+        }
+        #section4 {
+            background-color: #ffff7f;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Menu de Navegação com Links Internos -->
+    <nav>
+        <a href="#section1">Seção 1</a>
+        <a href="#section2">Seção 2</a>
+        <a href="#section3">Seção 3</a>
+        <a href="#section4">Seção 4</a>
+    </nav>
+
+    <!-- Seções de Conteúdo -->
+    <section id="section1">
+        <h2>Seção 1</h2>
+        <p>Conteúdo da Seção 1</p>
+    </section>
+
+    <section id="section2">
+        <h2>Seção 2</h2>
+        <p>Conteúdo da Seção 2</p>
+    </section>
+
+    <section id="section3">
+        <h2>Seção 3</h2>
+        <p>Conteúdo da Seção 3</p>
+    </section>
+
+    <section id="section4">
+        <h2>Seção 4</h2>
+        <p>Conteúdo da Seção 4</p>
+    </section>
+
+</body>
+</html>

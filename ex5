@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Lateral Retrátil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+        .sidebar .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 36px;
+        }
+        .open-btn {
+            font-size: 30px;
+            cursor: pointer;
+            background-color: #333;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        .open-btn:hover {
+            background-color: #575757;
+        }
+        .main-content {
+            margin-left: 0;
+            padding: 20px;
+            transition: margin-left 0.5s;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Botão para abrir a Sidebar -->
+    <button class="open-btn" id="openBtn">☰ Abrir Menu</button>
+
+    <!-- Menu Lateral (Sidebar) -->
+    <div class="sidebar" id="sidebar">
+        <a href="javascript:void(0)" class="close-btn" id="closeBtn">&times;</a>
+        <a href="#">Página Inicial</a>
+        <a href="#">Sobre</a>
+        <a href="#">Serviços</a>
+        <a href="#">Contato</a>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <div class="main-content" id="mainContent">
+        <h1>Bem-vindo ao meu site!</h1>
+        <p>Este é um exemplo de menu lateral retrátil (sidebar) que você pode abrir ou fechar clicando no botão de menu.</p>
+    </div>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const openBtn = document.getElementById('openBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        const mainContent = document.getElementById('mainContent');
+
+        // Função para abrir o menu lateral
+        openBtn.addEventListener('click', () => {
+            sidebar.style.width = '250px';  // Expande a largura da sidebar
+            mainContent.style.marginLeft = '250px';  // Move o conteúdo principal para a direita
+        });
+
+        // Função para fechar o menu lateral
+        closeBtn.addEventListener('click', () => {
+            sidebar.style.width = '0';  // Reduz a largura da sidebar a 0
+            mainContent.style.marginLeft = '0';  // Move o conteúdo principal de volta
+        });
+    </script>
+
+</body>
+</html>
